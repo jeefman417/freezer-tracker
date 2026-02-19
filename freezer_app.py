@@ -127,8 +127,13 @@ else:
             with c2:
                 st.subheader(food)
                 st.write(f"👤 {user}")
-                st.write(f"**Status:** {status} ({days_left})")
-                st.write(f"💰 **Value:** ${cost:.2f}")
+                if "Expired" in status:
+                    st.error(f"{status} ({days_left})")
+                elif "Expiring" in status:
+                    st.warning(f"{status} ({days_left})")
+                else:
+                    st.success(f"{status} ({days_left})")
+                st.write(f"💰 **Est Cost:** ${cost:.2f}")
             with c3:
                 st.write("⚖️ **Verdict?**")
 
